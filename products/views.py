@@ -75,6 +75,7 @@ def empforminsert(request):
         emp.phn_no = request.POST['pno']
         emp.email = request.POST['email']
         emp.sal = request.POST['sal']
+
         emp.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -91,6 +92,7 @@ def empformupdate(request, foo):
         emp.phn_no = request.POST['pno']
         emp.email = request.POST['email']
         emp.sal = request.POST['sal']
+
         emp.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -174,8 +176,8 @@ def medform(request):
 def medforminsert(request):
     try:
         med = Medicine()
-        med.m_id = request.POST['mid']
         med.mname = request.POST['mname']
+        med.m_id = request.POST['mid']
         med.dname = request.POST['dname']
         med.desc = request.POST['desc']
         med.price = request.POST['price']

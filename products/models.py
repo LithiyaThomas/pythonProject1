@@ -37,8 +37,8 @@ class Customer(models.Model):
 
 
 class Medicine(models.Model):
-    m_id = models.IntegerField(unique=True)
     mname = models.CharField(max_length=30)
+    m_id = models.IntegerField(unique=True)
     dname = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     price = models.CharField(max_length=30)
