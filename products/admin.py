@@ -5,7 +5,7 @@ from .models import Customer
 from .models import Medicine
 from .models import Purchase
 
-# Register your models here.
+# Register your models here.p
 class DealerAdmin(admin.ModelAdmin):
     list_display = ('dname', 'address', 'phn_no', 'email')
 class EmployeeAdmin(admin.ModelAdmin):
