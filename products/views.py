@@ -5,6 +5,7 @@ from .models import Medicine
 from .models import Purchase
 from django.shortcuts import render
 from django.db import IntegrityError
+from django.contrib import messages
 
 
 def home(request):
@@ -24,6 +25,7 @@ def dealerforminsert(request):
         dealer.phn_no = request.POST['pno']
         dealer.email = request.POST['email']
         dealer.save()
+        #messages.success(request,'Record added successfully')
     except IntegrityError:
         return render(request, "products/new.html")
     return render(request, 'products/index.html')

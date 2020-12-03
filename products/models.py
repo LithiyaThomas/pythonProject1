@@ -6,7 +6,7 @@ class Dealer(models.Model):
     dname = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
     phn_no = models.BigIntegerField(unique=True)
-    email = models.CharField(max_length=50)
+    email = models.EmailField(max_length=40)
 
     def __str__(self):
         return self.email
@@ -17,7 +17,7 @@ class Employee(models.Model):
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
-    email = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
     sal = models.CharField(max_length=20)
     phn_no = models.BigIntegerField(unique=True)
 
@@ -30,7 +30,7 @@ class Customer(models.Model):
     lname = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
     phn_no = models.BigIntegerField()
-    email = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
 
     def __str__(self):
         return self.email
@@ -38,7 +38,7 @@ class Customer(models.Model):
 
 class Medicine(models.Model):
     mname = models.CharField(max_length=30)
-    m_id = models.IntegerField(unique=True)
+    m_id = models.CharField(max_length=30)
     dname = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     price = models.CharField(max_length=30)
