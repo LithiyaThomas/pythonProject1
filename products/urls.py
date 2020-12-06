@@ -37,5 +37,10 @@ urlpatterns = [
     url(r'^purchaseformupdate(?P<foo>[0-9]+)/', views.purchaseformupdate, name="purchaseformupdate"),
     url(r'^purchaseformview(?P<foo>[0-9]+)/', views.purchaseformview, name="purchaseformview"),
     url(r'^purchaseformdelete(?P<foo>[0-9]+)/', views.purchaseformdelete, name="purchaseformdelete"),
-    url(r'^purchasetable/', views.purchasetable, name='purchasetable')
+    url(r'^purchasetable/', views.purchasetable, name='purchasetable'),
+
+    url(r'^stockform/',views.stockform, name="stockform"),
+
+
+
 ]

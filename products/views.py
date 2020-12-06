@@ -3,9 +3,10 @@ from .models import Employee
 from .models import Customer
 from .models import Medicine
 from .models import Purchase
+
 from django.shortcuts import render
 from django.db import IntegrityError
-from django.contrib import messages
+
 
 
 def home(request):
@@ -25,7 +26,7 @@ def dealerforminsert(request):
         dealer.phn_no = request.POST['pno']
         dealer.email = request.POST['email']
         dealer.save()
-        #messages.success(request,'Record added successfully')
+
     except IntegrityError:
         return render(request, "products/new.html")
     return render(request, 'products/index.html')
@@ -184,6 +185,8 @@ def medforminsert(request):
         med.desc = request.POST['desc']
         med.price = request.POST['price']
         med.stock = request.POST['stock']
+        med.manu = request.POST['manu']
+        med.expir = request.POST['expir']
         med.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -233,12 +236,9 @@ def purchaseforminsert(request):
         purchase = Purchase()
         purchase.pname = request.POST['pname']
         purchase.fname = request.POST['fname']
-        purchase.lname = request.POST['lname']
-        purchase.qty = request.POST['qty']
         purchase.phn_no = request.POST['pno']
+        purchase.qty = request.POST['qty']
         purchase.price = request.POST['price']
-        a = (int(purchase.price)) * (int(purchase.qty))
-        purchase.total = a
         purchase.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -250,12 +250,9 @@ def purchaseformupdate(request, foo):
         purchase = Purchase.objects.get(pk=foo)
         purchase.pname = request.POST['pname']
         purchase.fname = request.POST['fname']
-        purchase.lname = request.POST['lname']
-        purchase.qty = request.POST['qty']
         purchase.phn_no = request.POST['pno']
+        purchase.qty = request.POST['qty']
         purchase.price = request.POST['price']
-        a = (int(purchase.price)) * (int(purchase.qty))
-        purchase.total = a
         purchase.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -278,3 +275,9 @@ def purchasetable(request):
     purchase = Purchase.objects.all()
     dict = {"purchase": purchase}
     return render(request, 'products/purchasetable.html', dict)
+
+def stockform(request):
+    dict = {'add': True}
+    return render(request, 'products/stock.html', dict)
+
+
