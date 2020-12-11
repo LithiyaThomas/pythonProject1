@@ -40,6 +40,11 @@ urlpatterns = [
     url(r'^purchasetable/', views.purchasetable, name='purchasetable'),
 
     url(r'^stockform/',views.stockform, name="stockform"),
+    url(r'^stockforminsert/', views.stockforminsert, name="stockforminsert"),
+    url(r'^stockformupdate(?P<foo>[0-9]+)/', views.stockformupdate, name="stockformupdate"),
+    url(r'^stockformview(?P<foo>[0-9]+)/', views.stockformview, name="stockformview"),
+    url(r'^stockformdelete(?P<foo>[0-9]+)/', views.stockformdelete, name="stockformdelete"),
+    url(r'^stocktable/', views.stocktable, name='stocktable'),
 
 
 

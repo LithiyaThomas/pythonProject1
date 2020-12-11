@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+
 
 
 # Create your models here.
@@ -38,14 +38,14 @@ class Customer(models.Model):
 
 
 class Medicine(models.Model):
-    mname = models.CharField(max_length=30)
+    mname = models.CharField(max_length=100)
     m_id = models.CharField(max_length=30)
     dname = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
-    price = models.CharField(max_length=30)
-    stock = models.IntegerField()
-    manu = models.DateField(auto_now_add=True)
+    desc = models.CharField(max_length=50)
 
+    price = models.CharField(max_length=30)
+    stock1 = models.IntegerField()
+    manu = models.DateField(auto_now_add=True)
     expir = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.mname
@@ -60,3 +60,7 @@ class Purchase(models.Model):
 
     def __str__(self):
         return self.pname
+
+class Stock(models.Model):
+    mename = models.ForeignKey(Medicine,on_delete=models.CASCADE)
+    sto_qty = models.BigIntegerField()

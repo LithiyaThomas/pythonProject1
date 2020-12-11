@@ -3,7 +3,7 @@ from .models import Employee
 from .models import Customer
 from .models import Medicine
 from .models import Purchase
-
+from .models import Stock
 from django.shortcuts import render
 from django.db import IntegrityError
 
@@ -184,7 +184,7 @@ def medforminsert(request):
         med.dname = request.POST['dname']
         med.desc = request.POST['desc']
         med.price = request.POST['price']
-        med.stock = request.POST['stock']
+        med.stock1 = request.POST['stock1']
         med.manu = request.POST['manu']
         med.expir = request.POST['expir']
         med.save()
@@ -199,9 +199,10 @@ def medformupdate(request, foo):
         med.m_id = request.POST['mid']
         med.mname = request.POST['mname']
         med.dname = request.POST['dname']
+
         med.desc = request.POST['desc']
         med.price = request.POST['price']
-        med.stock = request.POST['stock']
+        med.stock1 = request.POST['stock1']
         med.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -279,5 +280,45 @@ def purchasetable(request):
 def stockform(request):
     dict = {'add': True}
     return render(request, 'products/stock.html', dict)
+
+def stockforminsert(request):
+    try:
+        stock = Stock()
+        stock.mename = request.POST['mename']
+        stock.sto_qty = request.POST['sto_qty']
+
+        stock.save()
+    except IntegrityError:
+        return render(request, "products/new.html")
+    return render(request, 'products/index.html')
+
+
+def stockformupdate(request, foo):
+    try:
+        stock = Stock.objects.get(pk=foo)
+        stock.mename = request.POST['mename']
+        stock.save()
+    except IntegrityError:
+        return render(request, "products/new.html")
+    return render(request, 'products/index.html')
+
+
+def stockformview(request, foo):
+    stock = Stock.objects.get(pk=foo)
+    dict = {'stock': stock}
+    return render(request, 'products/stock.html', dict)
+
+
+def stockformdelete(request, foo):
+    stock = Stock.objects.get(pk=foo)
+    stock.delete()
+    return render(request, 'products/index.html')
+
+
+def stocktable(request):
+    stock = Stock.objects.all()
+    dict = {"stock": stock}
+    return render(request, 'products/stocktable.html', dict)
+
 
 
