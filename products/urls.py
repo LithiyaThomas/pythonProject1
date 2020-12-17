@@ -46,6 +46,11 @@ urlpatterns = [
     url(r'^stockformdelete(?P<foo>[0-9]+)/', views.stockformdelete, name="stockformdelete"),
     url(r'^stocktable/', views.stocktable, name='stocktable'),
 
-
+    url(r'^saleform/', views.saleform, name="saleform"),
+    url(r'^saleforminsert/', views.saleforminsert, name="saleforminsert"),
+    url(r'^saleformupdate(?P<foo>[0-9]+)/', views.saleformupdate, name="saleformupdate"),
+    url(r'^saleformview(?P<foo>[0-9]+)/', views.saleformview, name="saleformview"),
+    url(r'^saleformdelete(?P<foo>[0-9]+)/', views.saleformdelete, name="saleformdelete"),
+    url(r'^saletable/', views.saletable, name='saletable'),
 
 ]

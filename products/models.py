@@ -42,7 +42,6 @@ class Medicine(models.Model):
     m_id = models.CharField(max_length=30)
     dname = models.CharField(max_length=30)
     desc = models.CharField(max_length=50)
-
     price = models.CharField(max_length=30)
     stock1 = models.IntegerField()
     manu = models.DateField(auto_now_add=True)
@@ -62,5 +61,13 @@ class Purchase(models.Model):
         return self.pname
 
 class Stock(models.Model):
-    mename = models.ForeignKey(Medicine,on_delete=models.CASCADE)
+    medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
     sto_qty = models.BigIntegerField()
+
+
+class Sale(models.Model):
+    medicine = models.ForeignKey(Medicine,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    saledate = models.DateField(auto_now_add=True)
+    saqty = models.BigIntegerField()
+    saprice = models.BigIntegerField()

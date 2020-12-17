@@ -4,6 +4,7 @@ from .models import Customer
 from .models import Medicine
 from .models import Purchase
 from .models import Stock
+from .models import Sale
 from django.shortcuts import render
 from django.db import IntegrityError
 
@@ -283,8 +284,8 @@ def stockform(request):
 
 def stockforminsert(request):
     try:
-        stock = Stock()
-        stock.mename = request.POST['mename']
+        stock = Stock.objects.all()
+        stock.medicine = request.POST['medicine_id']
         stock.sto_qty = request.POST['sto_qty']
 
         stock.save()
@@ -296,7 +297,7 @@ def stockforminsert(request):
 def stockformupdate(request, foo):
     try:
         stock = Stock.objects.get(pk=foo)
-        stock.mename = request.POST['mename']
+        stock.medicine = request.POST['medicine']
         stock.save()
     except IntegrityError:
         return render(request, "products/new.html")
@@ -320,5 +321,54 @@ def stocktable(request):
     dict = {"stock": stock}
     return render(request, 'products/stocktable.html', dict)
 
+def saleform(request):
+    dict = {'add': True}
+    return render(request, 'products/sale.html', dict)
+
+
+def saleforminsert(request):
+    try:
+        sale = Sale()
+        sale.medicine = request.POST['medicine']
+        sale.customer = request.POST['customer']
+        sale.saledate = request.POST['sdate']
+        sale.saqty = request.POST['sqty']
+        sale.saprice = request.POST['sprice']
+        sale.save()
+    except IntegrityError:
+        return render(request, "products/new.html")
+    return render(request, 'products/index.html')
+
+
+def saleformupdate(request, foo):
+    try:
+        sale = Sale.objects.get(pk=foo)
+        sale.medicine = request.POST['medicine']
+        sale.customer = request.POST['customer']
+        sale.saledate = request.POST['sdate']
+        sale.saqty = request.POST['sqty']
+        sale.saprice = request.POST['sprice']
+        sale.save()
+    except IntegrityError:
+        return render(request, "products/new.html")
+    return render(request, 'products/index.html')
+
+
+def saleformview(request, foo):
+    sale = Sale.objects.get(pk=foo)
+    dict = {'sale': sale}
+    return render(request, 'products/sale.html', dict)
+
+
+def saleformdelete(request, foo):
+    sale = Sale.objects.get(pk=foo)
+    sale.delete()
+    return render(request, 'products/index.html')
+
+
+def saletable(request):
+    sale = Sale.objects.all()
+    dict = {"Sale": sale}
+    return render(request, 'products/saletable.html', dict)
 
 
