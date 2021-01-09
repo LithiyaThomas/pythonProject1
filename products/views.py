@@ -7,6 +7,7 @@ from .models import Stock
 from .models import Sale
 from django.shortcuts import render
 from django.db import IntegrityError
+from django.contrib import messages
 
 
 
@@ -27,6 +28,7 @@ def dealerforminsert(request):
         dealer.phn_no = request.POST['pno']
         dealer.email = request.POST['email']
         dealer.save()
+        messages.success(request,'Successfully Saved')
 
     except IntegrityError:
         return render(request, "products/new.html")
@@ -72,13 +74,13 @@ def empform(request):
 def empforminsert(request):
     try:
         emp = Employee()
-        emp.e_id = request.POST['eid']
+
         emp.fname = request.POST['fname']
         emp.lname = request.POST['lname']
         emp.address = request.POST['address']
         emp.phn_no = request.POST['pno']
         emp.email = request.POST['email']
-        emp.sal = request.POST['sal']
+        emp.salary = request.POST['sal']
 
         emp.save()
     except IntegrityError:
@@ -89,7 +91,7 @@ def empforminsert(request):
 def empformupdate(request, foo):
     try:
         emp = Employee.objects.get(pk=foo)
-        emp.e_id = request.POST['eid']
+
         emp.fname = request.POST['fname']
         emp.lname = request.POST['lname']
         emp.address = request.POST['address']

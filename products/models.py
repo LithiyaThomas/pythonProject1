@@ -10,7 +10,7 @@ class Dealer(models.Model):
     email = models.EmailField(max_length=40)
 
     def __str__(self):
-        return self.email
+        return self.dname
 
 
 class Employee(models.Model):
@@ -23,7 +23,7 @@ class Employee(models.Model):
     phn_no = models.BigIntegerField(unique=True)
 
     def __str__(self):
-        return self.email
+        return self.fname
 
 
 class Customer(models.Model):
@@ -34,7 +34,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=50)
 
     def __str__(self):
-        return self.email
+        return self.fname
 
 
 class Medicine(models.Model):

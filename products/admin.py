@@ -10,13 +10,13 @@ from .models import Sale
 class DealerAdmin(admin.ModelAdmin):
     list_display = ('dname', 'address', 'phn_no', 'email')
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('fname', 'address', 'sal', 'phn_no')
+    list_display = ('fname', 'lname', 'address', 'email', 'sal', 'phn_no')
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('fname', 'address', 'phn_no')
+    list_display = ('fname', 'lname', 'address', 'phn_no', 'email')
 class MedicineAdmin(admin.ModelAdmin):
-    list_display = ('mname', 'dname', 'desc', 'price', 'stock1')
+    list_display = ('mname', 'm_id', 'dname', 'desc', 'price', 'stock1', 'manu', 'expir')
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('pname', 'fname', 'price', 'qty')
+    list_display = ('pname', 'fname', 'phn_no', 'price', 'qty')
 class StockAdmin(admin.ModelAdmin):
     list_display = ('medicine', 'sto_qty')
 class SaleAdmin(admin.ModelAdmin):
